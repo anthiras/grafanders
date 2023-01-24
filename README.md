@@ -1,3 +1,5 @@
+> This is a fork of Grafana. Please see [GRAFANDERS.md](GRAFANDERS.md) for details.
+
 ![Grafana](docs/logo-horizontal.png)
 
 The open-source platform for monitoring and observability

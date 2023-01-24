@@ -179,6 +179,9 @@ var (
 	GrafanaComUrl string
 
 	ImageUploadProvider string
+
+	// Grafanders settings
+	CustomStylesheet string
 )
 
 // AddChangePasswordLink returns if login form is disabled or not since
@@ -477,6 +480,9 @@ type Cfg struct {
 	GRPCServerNetwork   string
 	GRPCServerAddress   string
 	GRPCServerTLSConfig *tls.Config
+
+	// Grafanders
+	CustomStylesheet string
 }
 
 type CommandLineArgs struct {
@@ -1109,6 +1115,9 @@ func (cfg *Cfg) Load(args CommandLineArgs) error {
 		}
 	}
 	cfg.GeomapEnableCustomBaseLayers = geomapSection.Key("enable_custom_baselayers").MustBool(true)
+
+	grafanders := iniFile.Section("grafanders")
+	CustomStylesheet = grafanders.Key("custom_stylesheet").String()
 
 	cfg.readDateFormats()
 	cfg.readSentryConfig()

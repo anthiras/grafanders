@@ -201,6 +201,7 @@ func (hs *HTTPServer) getFrontendSettingsMap(c *models.ReqContext) (map[string]i
 		"oauth":       hs.getEnabledOAuthProviders(),
 		"samlEnabled": hs.samlEnabled(),
 		"samlName":    hs.samlName(),
+		"kioskMode":   setting.KioskMode,
 	}
 
 	if hs.ThumbService != nil {

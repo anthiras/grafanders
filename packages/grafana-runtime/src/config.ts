@@ -141,6 +141,7 @@ export class GrafanaBootConfig implements GrafanaConfig {
   rudderstackDataPlaneUrl: undefined;
   rudderstackSdkUrl: undefined;
   rudderstackConfigUrl: undefined;
+  kioskMode: undefined;
 
   constructor(options: GrafanaBootConfig) {
     this.bootData = options.bootData;

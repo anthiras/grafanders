@@ -182,6 +182,7 @@ var (
 
 	// Grafanders settings
 	CustomStylesheet string
+	KioskMode        string
 )
 
 // AddChangePasswordLink returns if login form is disabled or not since
@@ -483,6 +484,7 @@ type Cfg struct {
 
 	// Grafanders
 	CustomStylesheet string
+	KioskMode        string
 }
 
 type CommandLineArgs struct {
@@ -1118,6 +1120,7 @@ func (cfg *Cfg) Load(args CommandLineArgs) error {
 
 	grafanders := iniFile.Section("grafanders")
 	CustomStylesheet = grafanders.Key("custom_stylesheet").String()
+	KioskMode = grafanders.Key("kiosk_mode").String()
 
 	cfg.readDateFormats()
 	cfg.readSentryConfig()

@@ -216,6 +216,7 @@ export interface GrafanaConfig {
   rudderstackDataPlaneUrl: string | undefined;
   rudderstackSdkUrl: string | undefined;
   rudderstackConfigUrl: string | undefined;
+  kioskMode: string | undefined;
 }
 
 export interface AuthSettings {

@@ -126,6 +126,7 @@ func (hs *HTTPServer) setIndexViewData(c *models.ReqContext) (*dtos.IndexViewDat
 		ContentDeliveryURL:                  hs.Cfg.GetContentDeliveryURL(hs.License.ContentDeliveryPrefix()),
 		LoadingLogo:                         "public/img/grafana_icon.svg",
 		CustomStylesheet:                    setting.CustomStylesheet,
+		KioskMode:                           setting.KioskMode,
 	}
 
 	if !hs.AccessControl.IsDisabled() {

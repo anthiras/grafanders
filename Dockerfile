@@ -34,6 +34,7 @@ COPY pkg pkg
 COPY scripts scripts
 COPY cue.mod cue.mod
 COPY .bingo .bingo
+COPY kinds kinds
 
 RUN go mod verify
 RUN make build-go

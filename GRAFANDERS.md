@@ -25,3 +25,11 @@ Path to a local stylesheet, relative to the public folder. Can be used to mount 
 ### kiosk_mode
 
 Set to "full" or "tv" to lock a kiosk mode. If not set, user can toggle the kiosk mode.
+
+## Build/publish docker image
+
+```
+make build-docker-full
+docker tag anthiras/grafanders:dev anthiras/grafanders:1.0.0 # replace 1.0.0 with new version number
+docker push anthiras/grafanders:1.0.0 # replace 1.0.0 with new version number
+```

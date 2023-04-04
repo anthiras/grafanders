@@ -357,6 +357,16 @@ export class DashboardModel implements TimeModel {
   timeRangeUpdated(timeRange: TimeRange) {
     this.events.publish(new TimeRangeUpdatedEvent(timeRange));
     dispatch(onTimeRangeUpdated(this.uid, timeRange));
+
+    // Send time range to parent frame
+    window.parent.postMessage(
+      {
+        type: 'time-range-updated',
+        from: timeRange.from.toISOString(),
+        to: timeRange.to.toISOString(),
+      },
+      '*'
+    );
   }
 
   startRefresh(event: VariablesChangedEvent = { refreshAll: true, panelIds: [] }) {

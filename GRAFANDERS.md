@@ -1,6 +1,20 @@
 # Grafanders
 
-Grafanders is a fork of Grafana 9.3.2 with a few features and modifications available through configuration options:
+Grafanders is a fork of Grafana 9.3.2 with a few modifications, and a few added features available through configuration options.
+
+## Modifications
+
+### Parent frame events
+
+When the time range is changed, an event with the following structure is sent to the parent frame:
+
+```
+{
+  type: 'time-range-updated',
+  from: '2023-04-04T07:00:39.881Z',
+  to: '2023-04-04T10:26:02.504Z'
+}
+```
 
 ## Configuration section [grafanders]
 

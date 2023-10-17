@@ -387,6 +387,16 @@ export class DashboardModel implements TimeModel {
     if (this.panelInEdit) {
       this.timeRangeUpdatedDuringEdit = true;
     }
+
+    // Send time range to parent frame
+    window.parent.postMessage(
+      {
+        type: 'time-range-updated',
+        from: timeRange.from.toISOString(),
+        to: timeRange.to.toISOString(),
+      },
+      '*'
+    );
   }
 
   startRefresh(event: VariablesChangedEvent = { refreshAll: true, panelIds: [] }) {

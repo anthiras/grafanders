@@ -219,6 +219,8 @@ export interface GrafanaConfig {
   rudderstackSdkUrl: string | undefined;
   rudderstackConfigUrl: string | undefined;
   sqlConnectionLimits: SqlConnectionLimits;
+  kioskMode: string | undefined;
+  disableKeybindings: boolean;
 }
 
 export interface SqlConnectionLimits {

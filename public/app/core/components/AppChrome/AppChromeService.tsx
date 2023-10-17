@@ -26,6 +26,11 @@ export class AppChromeService {
   searchBarStorageKey = 'SearchBar_Hidden';
   private currentRoute?: RouteDescriptor;
   private routeChangeHandled = true;
+  private lockedKioskMode?: KioskMode;
+
+  constructor(lockedKioskMode?: KioskMode) {
+    this.lockedKioskMode = lockedKioskMode;
+  }
 
   readonly state = new BehaviorSubject<AppChromeState>({
     chromeless: true, // start out hidden to not flash it on pages without chrome
@@ -122,11 +127,19 @@ export class AppChromeService {
   };
 
   exitKioskMode() {
+    if (this.lockedKioskMode) {
+      return;
+    }
     this.update({ kioskMode: undefined });
     locationService.partial({ kiosk: null });
   }
 
   setKioskModeFromUrl(kiosk: UrlQueryValue) {
+    // If a kiosk mode is set in the configuration, use that one and ignore the URL setting
+    if (this.lockedKioskMode) {
+      this.update({ kioskMode: this.lockedKioskMode });
+      return;
+    }
     switch (kiosk) {
       case 'tv':
         this.update({ kioskMode: KioskMode.TV });

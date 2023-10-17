@@ -44,6 +44,7 @@ import { getScrollbarWidth } from '@grafana/ui';
 import config from 'app/core/config';
 import { arrayMove } from 'app/core/utils/arrayMove';
 import { getStandardTransformers } from 'app/features/transformers/standardTransformers';
+import { KioskMode } from 'app/types';
 
 import getDefaultMonacoLanguages from '../lib/monaco-languages';
 
@@ -209,10 +210,18 @@ export class GrafanaApp {
 
       setPluginExtensionGetter(pluginExtensionGetter);
 
+      let lockedKioskMode;
+      if (config.kioskMode === 'full') {
+        lockedKioskMode = KioskMode.Full;
+      }
+      if (config.kioskMode === 'tv') {
+        lockedKioskMode = KioskMode.TV;
+      }
+
       // initialize chrome service
       const queryParams = locationService.getSearchObject();
-      const chromeService = new AppChromeService();
-      const keybindingsService = new KeybindingSrv(locationService, chromeService);
+      const chromeService = new AppChromeService(lockedKioskMode);
+      const keybindingsService = new KeybindingSrv(locationService, chromeService, config.disableKeybindings);
 
       // Read initial kiosk mode from url at app startup
       chromeService.setKioskModeFromUrl(queryParams.kiosk);

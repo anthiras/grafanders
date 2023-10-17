@@ -130,6 +130,9 @@ func (hs *HTTPServer) setIndexViewData(c *contextmodel.ReqContext) (*dtos.IndexV
 		ContentDeliveryURL:                  hs.Cfg.GetContentDeliveryURL(hs.License.ContentDeliveryPrefix()),
 		LoadingLogo:                         "public/img/grafana_icon.svg",
 		IsDevelopmentEnv:                    hs.Cfg.Env == setting.Dev,
+		CustomStylesheet:                    setting.CustomStylesheet,
+		KioskMode:                           setting.KioskMode,
+		DisableKeybindings:                  setting.DisableKeybindings,
 	}
 
 	if hs.Cfg.CSPEnabled {

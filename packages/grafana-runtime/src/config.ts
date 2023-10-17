@@ -166,6 +166,10 @@ export class GrafanaBootConfig implements GrafanaConfig {
   tokenExpirationDayLimit: undefined;
   disableFrontendSandboxForPlugins: string[] = [];
 
+  // Grafanders
+  kioskMode: undefined;
+  disableKeybindings = false;
+
   constructor(options: GrafanaBootConfig) {
     this.bootData = options.bootData;
     this.isPublicDashboardView = options.bootData.settings.isPublicDashboardView;

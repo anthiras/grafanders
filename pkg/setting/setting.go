@@ -143,6 +143,11 @@ var (
 	GrafanaComUrl string
 
 	ImageUploadProvider string
+
+	// Grafanders settings
+	CustomStylesheet   string
+	KioskMode          string
+	DisableKeybindings bool
 )
 
 // TODO move all global vars to this struct
@@ -558,6 +563,10 @@ type Cfg struct {
 
 	// Feature Management Settings
 	FeatureManagement FeatureMgmtSettings
+
+	// Grafanders
+	CustomStylesheet string
+	KioskMode        string
 }
 
 // AddChangePasswordLink returns if login form is disabled or not since
@@ -1228,6 +1237,11 @@ func (cfg *Cfg) Load(args CommandLineArgs) error {
 		}
 	}
 	cfg.GeomapEnableCustomBaseLayers = geomapSection.Key("enable_custom_baselayers").MustBool(true)
+
+	grafanders := iniFile.Section("grafanders")
+	CustomStylesheet = grafanders.Key("custom_stylesheet").String()
+	KioskMode = grafanders.Key("kiosk_mode").String()
+	DisableKeybindings = grafanders.Key("disable_keybindings").MustBool(false)
 
 	cfg.readDateFormats()
 	cfg.readGrafanaJavascriptAgentConfig()

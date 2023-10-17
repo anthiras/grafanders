@@ -31,10 +31,15 @@ import { withFocusedPanel } from './withFocusedPanelId';
 export class KeybindingSrv {
   constructor(
     private locationService: LocationService,
-    private chromeService: AppChromeService
+    private chromeService: AppChromeService,
+    private disabled: boolean = false
   ) {}
 
   clearAndInitGlobalBindings(route: RouteDescriptor) {
+    if (this.disabled) {
+      return;
+    }
+
     Mousetrap.reset();
 
     // Chromeless pages like login and signup page don't get any global bindings

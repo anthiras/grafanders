@@ -192,7 +192,7 @@ build-docker-full: ## Build Docker image for development.
 	--build-arg WIRE_TAGS=$(WIRE_TAGS) \
 	--build-arg COMMIT_SHA=$$(git rev-parse --short HEAD) \
 	--build-arg BUILD_BRANCH=$$(git rev-parse --abbrev-ref HEAD) \
-	--tag grafana/grafana$(TAG_SUFFIX):dev \
+	--tag anthiras/grafanders:dev \
 	$(DOCKER_BUILD_ARGS)
 
 build-docker-full-ubuntu: ## Build Docker image based on Ubuntu for development.
@@ -207,7 +207,7 @@ build-docker-full-ubuntu: ## Build Docker image based on Ubuntu for development.
 	--build-arg BUILD_BRANCH=$$(git rev-parse --abbrev-ref HEAD) \
 	--build-arg BASE_IMAGE=ubuntu:20.04 \
 	--build-arg GO_IMAGE=golang:1.20.10 \
-	--tag grafana/grafana$(TAG_SUFFIX):dev-ubuntu \
+	--tag anthiras/grafanders:dev-ubuntu \
 	$(DOCKER_BUILD_ARGS)
 
 ##@ Services
